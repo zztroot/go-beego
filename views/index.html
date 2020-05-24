@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人博客</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+		<script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<!-- 导航栏 -->
+			<div class="navigation">
+				<nav>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">首页</a>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">分享</a>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">关于</a>
+					<a class="a2" href="/login" style="text-decoration:none; color: #fff8f8">添加文章</a>
+				</nav>
+			</div>
+		</div>
+		<!-- 主要内容 -->
+		<div class="container">
+			<div class="col-xs-12 col-sm-12 col-md-9">
+				<div class="left_content">
+					{{ range .article }}
+					<div class="title">
+						<b>{{ .Title }}</b>
+					</div>
+					<div class="content">
+						{{ .Content |HandleArticleContent |str2html }}
+					</div>
+					<p class="p1"><a href="/showArticle?id={{ .Id }}">查看全文</a> | 上传日期:{{ .Times.Format "2006-01-02"}}</p>
+					<hr class="hr1"/>
+					{{ end }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="right_content">
+					<div class="total">
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(110)</a>
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(10)</a>
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(20)</a>
+						<hr class="hr2" >
+					</div>
+					<div class="articleType">
+						{{ range .articleType }}
+						<a href="#" class="a3">{{ .TypeName }}(10)</a>
+						{{ end }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

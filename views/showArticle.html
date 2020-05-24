@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>查看文章</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+		<script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<!-- 导航栏 -->
+			<div class="navigation">
+				<nav>
+					<a class="a2" href="/" style="text-decoration:none; color: #fff8f8">首页</a>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">分享</a>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">关于</a>
+					<a class="a2" href="/login" style="text-decoration:none; color: #fff8f8">添加文章</a>
+				</nav>
+			</div>
+		</div>
+		<!-- 主要内容 -->
+		<div class="container">
+			<div class="col-xs-12 col-sm-12 col-md-9">
+				<div class="left_content">
+					<div class="title">
+						<h4 class="title"><b>{{ .article.Title }}</b></h4>
+					</div>
+					<div class="content">
+						<p>{{ .article.Content |str2html}}</p>
+					</div>
+					<p class="p1">上传日期:{{ .article.Times.Format "2006-01-02 15-04-05"}}</p>
+					<hr class="hr1"/>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="right_content">
+					<div class="total">
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(110)</a>
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(10)</a>
+						<a class="a1" href="" style="text-decoration:none; color: #122B40">文章(20)</a>
+						<hr class="hr2" >
+					</div>
+					<div class="articleType">
+						<a href="#" class="a3">python(10)</a>
+						<a href="#" class="a3">python(10)</a>
+						<a href="#" class="a3">c++(10)</a>
+						<a href="#" class="a3">go(10)</a>
+						<a href="#" class="a3">java(10)</a>
+						<a href="#" class="a3">python(10)</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

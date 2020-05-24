@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+	<script src="../static/js/jQuery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="login">
+    <h2><a href="/" style="text-decoration:none; color: #fff8f8">管理员登录</a></h2>
+    <form action="/login" method="post" onsubmit="return verify()">
+        <div class="userPwd">
+            <input type="text" name="Username" class="username" id="username" placeholder="请输入账号" value="{{ .name }}">
+        </div>
+        <div class="userPwd">
+            <input type="password" name="Password" class="password" id="password" placeholder="请输入密码">
+        </div>
+        <input type="submit" value="登录" class="button" id="test2">
+        <script>
+            layer.msg({{ .errMsg }})
+        </script>
+    </form>
+</div>
+<script>
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
+    function verify() {
+        if (username.value === ""){
+            layer.msg("账号为空，请重新输入！");
+            return false;
+        }else if (password.value === ""){
+            layer.msg("密码为空，请重新输入");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+</script>
+</body>
+</html>

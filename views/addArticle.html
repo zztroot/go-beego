@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>文章添加</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+		<script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/ckeditor/ckeditor.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<!-- 导航栏 -->
+			<div class="navigation">
+				<nav>
+					<a class="a2" href="/" style="text-decoration:none; color: #fff8f8">首页</a>
+					<a class="a2" href="#" style="text-decoration:none; color: #fff8f8">添加资源</a>
+					<a class="a2" href="/addType" style="text-decoration:none; color: #fff8f8">添加类型</a>
+					<a class="a2" href="/outLogin" style="text-decoration:none; color: #fff8f8">退出登录</a>
+				</nav>
+			</div>
+		</div>
+		<!-- 主要内容 -->
+		<div class="container">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="left_content">
+					<form action="/addArticle" method="post">
+						<div class="title_1">
+							<input type="text" name="title_1" class="titles" placeholder="文章标题"/>
+						</div>
+						<div class="type">
+							文章类型:<select id="article_type" name="ArticleType">
+								{{ range .Types }}
+										<option value ={{ .Id }}>{{ .TypeName }}</option>
+								{{ end }}
+									</select>
+
+						</div>
+						<div class="content">
+							<textarea rows="2" id="articleContent" name="editor01">
+							</textarea>
+							<script>
+								CKEDITOR.replace('editor01');
+								var htmlData = CKEDITOR.instances.articleContent.getData();
+							</script>
+						</div>
+						<div class="release">
+							<input type="submit" name="submit" value="发布" class="submits"/>
+						</div>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
