@@ -31,7 +31,9 @@
 					<div class="content">
 						{{ .Content |HandleArticleContent |str2html }}
 					</div>
-					<p class="p1"><a href="/showArticle?id={{ .Id }}">查看全文</a> | 上传日期:{{ .Times.Format "2006-01-02"}}</p>
+					<div class="p1">
+						<p><a href="/showArticle?id={{ .Id }}">查看全文</a> | 上传日期:{{ .Times.Format "2006-01-02"}}</p>
+					</div>
 					<hr class="hr1"/>
 					{{ end }}
 				</div>
@@ -45,8 +47,8 @@
 						<hr class="hr2" >
 					</div>
 					<div class="articleType">
-						{{ range .articleType }}
-						<a href="#" class="a3">{{ .TypeName }}(10)</a>
+						{{ range $k, $v := .types }}
+							<a href="" class="a3">{{ $k }}({{ $v }})</a>
 						{{ end }}
 					</div>
 				</div>

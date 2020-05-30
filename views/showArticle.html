@@ -43,12 +43,9 @@
 						<hr class="hr2" >
 					</div>
 					<div class="articleType">
-						<a href="#" class="a3">python(10)</a>
-						<a href="#" class="a3">python(10)</a>
-						<a href="#" class="a3">c++(10)</a>
-						<a href="#" class="a3">go(10)</a>
-						<a href="#" class="a3">java(10)</a>
-						<a href="#" class="a3">python(10)</a>
+						{{ range $k, $v := .types }}
+							<a href="" class="a3">{{ $k }}({{ $v }})</a>
+						{{ end }}
 					</div>
 				</div>
 			</div>

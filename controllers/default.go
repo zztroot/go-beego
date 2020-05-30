@@ -30,7 +30,8 @@ func (c *MainController) Get() {
 		newArticle = append(newArticle, index)
 	}
 
-	//实现文章类型的文章数据
+	//实现各文章类型的文章数量(一对多查询)
+	//查询流程，先查询一，再查询多
 	var articleType []models.ArticleType
 	_, err =o.QueryTable("ArticleType").All(&articleType)
 	if err != nil{
@@ -38,7 +39,19 @@ func (c *MainController) Get() {
 		return
 	}
 
-	c.Data["articleType"] = articleType
+	types := make(map[string]int)
+	for _, v := range articleType{
+		var articles []models.Article
+		qs := o.QueryTable("Article")
+		if _, err = qs.Filter("ArticleType__TypeName", v.TypeName).All(&articles); err != nil{
+			log.Println("查询错误:", err)
+			return
+		}
+
+		types[v.TypeName] = len(articles)
+	}
+
+	c.Data["types"] = types
 	c.Data["article"] = newArticle
 	c.TplName = "index.html"
 }
@@ -60,6 +73,28 @@ func (c *MainController) ShowArticleGet(){
 		c.TplName = "showArticle.html"
 		return
 	}
+
+	//实现各文章类型的文章数量(一对多查询)
+	//查询流程，先查询一，再查询多
+	var articleType []models.ArticleType
+	_, err =o.QueryTable("ArticleType").All(&articleType)
+	if err != nil{
+		log.Println("文章类型查询失败:", err)
+		return
+	}
+
+	types := make(map[string]int)
+	for _, v := range articleType{
+		var articles []models.Article
+		qs := o.QueryTable("Article")
+		if _, err = qs.Filter("ArticleType__TypeName", v.TypeName).All(&articles); err != nil{
+			log.Println("查询错误:", err)
+			return
+		}
+
+		types[v.TypeName] = len(articles)
+	}
+	c.Data["types"] = types
 	c.Data["article"] = article
 	c.TplName = "showArticle.html"
 }
